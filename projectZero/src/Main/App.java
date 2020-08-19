@@ -3,21 +3,21 @@ package Main;
 public class App {
 
 	public static void main(String[] args) {
+		welcomePage welcomePage = new welcomePage();
+		newAccount newAccount = new newAccount();
 		login user = new login();
-		adminPage adminPage = new adminPage();
+		adminLogin admin = new adminLogin();
 		
-		user.login();
-		
-		if(user.getUserName().equals("admin") && user.getPassword().contentEquals("admin")) {
-			System.out.println("Welcome to the admin page");
-			adminPage.adminHome();
+		welcomePage.welcomePage();
+		if(welcomePage.getOption() == 1){
+			newAccount.newAccount();
+		}
+		else if(welcomePage.getOption() == 2) {
+			user.login();
 		}
 		else {
-			System.out.println("Welcome to the basic user page");
+			admin.adminLogin();
 		}
-		
-		
-
 	}
 
 }

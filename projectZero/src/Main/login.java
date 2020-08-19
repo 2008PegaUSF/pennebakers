@@ -10,12 +10,12 @@ public class login {
 	public void login() {
 		Scanner input = new Scanner(System.in);
 		
-		System.out.printf("Welcome to Bank App\nPlease enter your Username & Password below\n\n");
+		System.out.println("Welcome Back To The Bank App.\nPlease Enter Your Username and Password");
 		
-		System.out.println("Username: ");
+		System.out.print("Username: ");
 		username = input.nextLine();
 		
-		System.out.println("Password: ");
+		System.out.print("Password: ");
 		password = input.nextLine();
 		
 		
