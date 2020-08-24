@@ -5,7 +5,8 @@ import java.util.*;
 import java.lang.*; 
 
 public class questionEight {
-	public void palindrome() {
+	
+	public ArrayList<String> palindrome() {
 		
 		ArrayList<String> originalList = new ArrayList<String>();
 		ArrayList<String> palindromeList = new ArrayList<String>();
@@ -35,5 +36,7 @@ public class questionEight {
 		for(String b : palindromeList) {
 			System.out.print(b + " ");
 		}	
+		
+		return palindromeList;
 	}
 }

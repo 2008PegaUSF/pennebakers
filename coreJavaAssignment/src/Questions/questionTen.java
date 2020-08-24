@@ -1,7 +1,7 @@
 package Questions;
 
 public class questionTen {
-	public questionTen(int valueOne, int valueTwo, int valueThree){
+	public int questionTen(int valueOne, int valueTwo, int valueThree){
 		int temp, result;
 		
 		temp = valueOne < valueTwo ? valueOne:valueTwo;
@@ -9,5 +9,7 @@ public class questionTen {
 		
 		System.out.println("Values Inputted: " + valueOne + ", " + valueTwo + ", " + valueThree);
 		System.out.println("Smallest value: " + result);
+		
+		return result;
 	}
 }

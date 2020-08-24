@@ -1,12 +1,12 @@
 package Questions;
 
 public class questionFive {
-	void substring(String str, int idx) {
+	public String substring(String str, int idx) {
 		char[] input = str.toCharArray();
-		
+		String output = "";
 		for(int i = 0; i <= idx-1; i++) {
-			System.out.print(input[i]);
+			output = output.concat(String.valueOf(input[i]));
 		}
-		System.out.println();
+		return output;
 	}
 }

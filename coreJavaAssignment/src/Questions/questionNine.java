@@ -3,7 +3,7 @@ package Questions;
 import java.util.ArrayList;
 
 public class questionNine {
-	public void printPrimeNumbers() {
+	public ArrayList<Integer> printPrimeNumbers() {
 	
 	int i = 0;
 	int num = 0;
@@ -30,6 +30,8 @@ public class questionNine {
 	for(Integer a : numbers) {
 		System.out.print(a + " ");
 	}
+	
+	return numbers;
 	
   }
 }

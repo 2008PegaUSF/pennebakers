@@ -9,12 +9,14 @@ public class questionSeventeen {
 	private int time;
 	private int rate;
 	
-	public void calculateInterest() {
+	public int calculateInterest() {
+		int output;
 		enterPrincipal();
 		enterTime();
 		enterRate();
-		
+		output = (getPrincipal() * getTime() * getRate());
 		System.out.println("Interest: " + (getPrincipal() * getTime() * getRate()));
+		return output;
 	}
 	
 	public void enterPrincipal() {

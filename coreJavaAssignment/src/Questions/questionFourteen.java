@@ -2,11 +2,12 @@ package Questions;
 
 import java.util.Scanner;
 import java.time.LocalDate;
-import java.lang.Math; 
+import java.lang.Math;
+import java.util.Arrays;
 import java.util.Random;
 
 public class questionFourteen {
-	public void switchCasePrint() {
+	public String switchCasePrint() {
 		LocalDate myObj = LocalDate.now();
 		Random rand = new Random();
 		
@@ -24,13 +25,16 @@ public class questionFourteen {
 		
 		switch(value) {
 		case 1:
-			int int_random = rand.nextInt(upperbound);
-			square = Math.pow(int_random, 2);
-			System.out.println("The square value of: " + int_random + "\nEquals: " + square);
-			break;
+			Scanner inputValue = new Scanner(System.in);
+			System.out.println("Enter a number: ");
+			double number = inputValue.nextDouble();
+			square = Math.pow(number, 2);
+			System.out.println("The square value of: " + number + "\nEquals: " + square);
+			String strSolved = Double.toHexString(square);
 		case 2:
 			System.out.println(myObj);
-			break;
+			strSolved = myObj.toString();
+			return strSolved;
 		case 3:
 			String string = "I am learning Core Java";
 			String[] strArray = string.split("g", 2);
@@ -38,7 +42,11 @@ public class questionFourteen {
 			for(String a : strArray) {
 				System.out.println(a);
 			}
-			break;
+			strSolved = Arrays.toString(strArray);
+			return strSolved;
+		default:
+			strSolved = "";
+			return strSolved;
 		}
 	}
 	

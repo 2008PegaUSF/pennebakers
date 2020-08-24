@@ -1,16 +1,17 @@
 package Questions;
 
 public class questionSix {
-	public void isEven(int n) {
+	public boolean isEven(int n) {
 		boolean isEven = true;
+		boolean isFalse = false;
 		
 		for(int i = 1; i <= n; i++)
 			isEven = !isEven;
 		
 		if(isEven == true)
-			System.out.println("Even");
+			return isEven;
 		else
-			System.out.println("Odd");
+			return isFalse;
 
 	}
 }
