@@ -19,17 +19,16 @@ public class Account implements Serializable{
 	private int balance;
 	private boolean verified;
 	
-	public Account(String username, String password, String firstname, String lastname) {
-		super();
+	public Account(String username, String password, String firstname, String lastname, int balance) {
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
-		//this.balance = balance;
+		this.balance = balance;
 	}
 	
 	@Override
 	public String toString() {
-		return "Account [username= " + username + ", password=" + password + ", firstname=" + firstname + ", lastname=" + lastname + "]";
+		return "Account [username= " + username + ", password=" + password + ", firstname=" + firstname + ", lastname=" + lastname + ", balance=" + balance + "]";
 	}
 }
