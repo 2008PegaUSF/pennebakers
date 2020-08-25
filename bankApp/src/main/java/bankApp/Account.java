@@ -29,6 +29,30 @@ public class Account implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Account [username= " + username + ", password=" + password + ", firstname=" + firstname + ", lastname=" + lastname + ", balance=" + balance + "]";
+		return "Account [username=" + username + ", password=" + password + ", firstname=" + firstname + ", lastname=" + lastname + ", balance=" + balance + "]";
+	}
+
+	public String getUsername() {
+		return username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public String getFirstname() {
+		return firstname;
+	}
+	
+	public String getLastname() {
+		return lastname;
+	}
+	
+	public int getBalance() {
+		return balance;
+	}
+	
+	public void setBalance(int input) {
+		this.balance = input;
 	}
 }

@@ -22,12 +22,16 @@ public class bankApp{
 	String lastname;
 	int balance;
 	
+	
+	//used to be able to get all the accounts from the deserialized file. Use this if you want to search for an account through the list. 
 	private ArrayList<Account> accList;
 	
 	public void run() {
 		homeScreen();
 	}
 	
+	
+	//Home Screen After Logging In
 	public void homeScreen() {
 		//readInfoFromFile();
 		readAccountsFile();
@@ -41,7 +45,7 @@ public class bankApp{
 		optionSelected = optionInput.nextInt();
 		optionInput.nextLine();
 		
-		
+		//Option 1 for creating an account
 		if(optionSelected == 1) {
 			System.out.println("First Name: ");
 			firstname = optionInput.nextLine();
@@ -62,12 +66,15 @@ public class bankApp{
 			homeScreen();
 			
 		}
+		//Option For Creating A Joint Account
 		else if(optionSelected == 2) {
 			//createJointAccount();
 		}
+		//Option For Loggin In
 		else if(optionSelected == 3) {
 			loginScreen();
 		}
+		//Logging Out
 		else {
 			System.exit(0);
 		}
@@ -92,7 +99,7 @@ public class bankApp{
 	}
 	
 
-	
+	//This Is How we are reading from the serialized file and desearializing the file so we may access the saved accounts. 
 	public void readAccountsFile(){
 		try {
 			ArrayList<Account> list;
@@ -100,6 +107,8 @@ public class bankApp{
 			ObjectInputStream os = new ObjectInputStream(is);
 			list = (ArrayList<Account>) os.readObject();
 			
+			
+			//We are saving the list into the accList that is made globally at the top of the program
 			accList = list;
 
 			os.close();
@@ -114,6 +123,8 @@ public class bankApp{
 		
 	}
 	
+	
+	//Login screen Method
 	public void loginScreen() {
 		Scanner usernameLogin = new Scanner(System.in);
 		Scanner passwordLogin = new Scanner(System.in);
@@ -129,24 +140,106 @@ public class bankApp{
 		
 		
 		
-		//Make method to iterate through list and find an == to the username and password.
-		//for(int i = 0; i < accList.size(); i++)
-		//if(accList.get(i).getusername() == username && accList.get(i).getpassword() == password)
-		if(accList.contains(username)) {
-			//accountHomeScreen();
-			System.out.println("Succesful login");
+		//Referenced account.
+		Account a;
+		for(int i = 0; i < accList.size(); i++) {
+			if(accList.get(i).getUsername().equals(username) && accList.get(i).getPassword().equals(password)) {
+				a = accList.get(i);
+				System.out.println("Successful login");
+				
+				accountHomeScreen(a);
+			}
 		}
-		else {
-			System.out.println("error");
+		
+		
+	}
+	
+	
+	
+	public void accountHomeScreen(Account a) {
+		Scanner homeScreenInput = new Scanner(System.in);
+		String input;
+		System.out.println("Welecome To Your Account Home Screen...");
+		System.out.println("Please Select An Option Below...");
+		System.out.println("1. View Account Information.");
+		System.out.println("2. Deposit.");
+		System.out.println("3. Withdraw. ");
+		System.out.println("4. Transfer. ");
+		System.out.println("5. Logout. ");
+		input = homeScreenInput.nextLine();
+		
+		
+		
+		if(input.equals("1")){
+			System.out.println(a.toString());
+			
+			System.out.println("Type 1 To Go Back To Your Account Home Screen");
+			input = homeScreenInput.nextLine();
+			if(input.equals("1")) {
+				accountHomeScreen(a);
+			}
+		}
+		else if(input.equals("2"))
+		{
+			Scanner depInput = new Scanner(System.in);
+			int depositAmount;
+			System.out.println("Current Balance: " + a.getBalance());
+			System.out.println("Enter Amount To Deposit: $");
+			depositAmount = depInput.nextInt();
+			
+			a.setBalance(a.getBalance() + depositAmount);
+			saveInfoToFile(accList);
+			System.out.println("Current Balance Is Now: " + a.getBalance());
+			accountHomeScreen(a);
+		}
+		else if(input.equals("3")) {
+			Scanner withdrawInput = new Scanner(System.in);
+			int withdrawAmount;
+			
+			System.out.println("Current Balance: " + a.getBalance());
+			System.out.println("Enter Amount To Withdraw: $");
+			withdrawAmount = withdrawInput.nextInt();
+			
+			//Check if the balance is big enough to be able to withdraw, if its not sufficient enough, it sends you back to the home screen
+			if(a.getBalance() < withdrawAmount) {
+				System.out.println("Error, Insufficient Balance...");
+				System.out.println("Please Try Again...");
+				accountHomeScreen(a);
+			}
+			else {
+				a.setBalance(a.getBalance() - withdrawAmount);
+				saveInfoToFile(accList);
+				System.out.println("Current Balance Is Now: " + a.getBalance());
+				accountHomeScreen(a);
+			}
+		}
+		else if(input.equals("4")) {
+			Scanner usernameInput = new Scanner(System.in);
+			Scanner transferInput = new Scanner(System.in);
+			String findUsername;
+			int transferAmount;
+			System.out.println("Current Balance: $" + a.getBalance());
+			System.out.println("Enter A Username You Would Like To Transfer To: ");
+			findUsername = usernameInput.nextLine();
+			
+			Account b;
+			
+			for(int i = 0; i < accList.size(); i++) {
+				if(accList.get(i).getUsername().equals(findUsername)) {
+					b = accList.get(i);
+					System.out.println("Your Current Balance Is: $" + a.getBalance());
+					System.out.println("How Much Would You Like To Transfer: $");
+					transferAmount = transferInput.nextInt();
+					
+					a.setBalance(a.getBalance() - transferAmount);
+					b.setBalance(b.getBalance() + transferAmount);
+					saveInfoToFile(accList);
+					System.out.println("Transfer Successful...");
+					System.out.println("Current Balance Is Now: "  + a.getBalance());
+					accountHomeScreen(a);
+				}
+			}
 		}
 		
 	}
-
-	/*public void accountHomeScreen() {
-		Scanner homeScreenInput = new Scanner(System.in);
-		
-		System.out.println();
-		
-	}*/
-
 }
